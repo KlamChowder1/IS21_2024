@@ -34,7 +34,9 @@ const PaintSupplyCard = ({ paintData }) => {
           endAdornment="litres"
         />
       </CardContent>
+      {/* TODO: Add badge to visually show low / no supply */}
       <CardActions sx={{ justifyContent: 'center' }}>
+        {/* TODO: Add functionality to save button */}
         {paintData.quantity !== quantity && (
           <Button variant="contained">Save</Button>
         )}
