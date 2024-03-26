@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CardContent, Typography, Card } from '@mui/material';
+import { CardContent, Card, CardHeader } from '@mui/material';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 
 console.log('test ');
@@ -8,9 +8,9 @@ const PaintSupplyCard = ({ paintData }) => {
   const [quantity, setQuantity] = useState(paintData.quantity);
 
   return (
-    <Card>
+    <Card style={{ border: `6px solid ${paintData.colour.toLowerCase()}` }}>
       <CardContent>
-        <Typography>{paintData.colour}</Typography>
+        <CardHeader title={paintData.colour} />
         <NumberInput
           aria-label="Demo number input"
           placeholder="Type a number…"
