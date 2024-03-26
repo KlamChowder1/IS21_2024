@@ -15,8 +15,8 @@ const PaintSupplyContainer = () => {
       <Grid container spacing={2}>
         {testDummyPaintData &&
           testDummyPaintData.map((paintData) => (
-            <Grid item xs={12} md={6} lg={4}>
-              <PaintSupplyCard key={paintData.id} paintData={paintData} />
+            <Grid key={paintData.id} item xs={12} md={6} lg={4}>
+              <PaintSupplyCard paintData={paintData} />
             </Grid>
           ))}
       </Grid>

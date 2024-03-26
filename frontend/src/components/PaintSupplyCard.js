@@ -25,7 +25,7 @@ const PaintSupplyCard = ({ paintData }) => {
               children: '▾',
             },
           }}
-          endAdornment="lbs"
+          endAdornment="litres"
         />
       </CardContent>
     </Card>
