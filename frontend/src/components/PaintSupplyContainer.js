@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid';
+import { Box, Grid } from '@mui/material';
 import PaintSupplyCard from './PaintSupplyCard';
 
 const PaintSupplyContainer = () => {
@@ -11,14 +11,16 @@ const PaintSupplyContainer = () => {
     { id: 4, colour: 'purple', quantity: 70 },
   ];
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={8}>
+    <Box sx={{ m: '2rem' }}>
+      <Grid container spacing={2}>
         {testDummyPaintData &&
           testDummyPaintData.map((paintData) => (
-            <PaintSupplyCard key={paintData.id} paintData={paintData} />
+            <Grid item xs={12} md={6} lg={4}>
+              <PaintSupplyCard key={paintData.id} paintData={paintData} />
+            </Grid>
           ))}
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 
