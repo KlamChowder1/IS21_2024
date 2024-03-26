@@ -21,9 +21,13 @@ router.get('/:id', async (req, res) => {
   res.status(200).json(paint);
 });
 
-// TODO: update a single paint (use PATCH instead of PUT for partial updates)
-router.patch('/:id', (req, res) => {
-  res.json({ mssg: 'Update a single paint' });
+router.patch('/:id', async (req, res) => {
+  const { id } = req.params;
+  const workout = await Paint.findOneAndUpdate({ _id: id }, { ...req.body });
+  if (!workout) {
+    return res.status(404).json({ error: 'This paint does not exist' });
+  }
+  res.status(200).json(workout);
 });
 
 // need a POST to insert stuff into db
