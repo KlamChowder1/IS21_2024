@@ -3,14 +3,22 @@ const Paint = require('../models/paintModel');
 
 const router = express.Router();
 
-// TODO: get all paint
-router.get('/', (req, res) => {
-  res.json({ mssg: 'Get all paints' });
+// TODO: could add controllers for paint routes but keeping it simple for now
+
+router.get('/', async (req, res) => {
+  const paints = await Paint.find({}).sort({ createdAt: -1 });
+  res.status(200).json(paints);
 });
 
-// TODO: get a single paint
-router.get('/:id', (req, res) => {
-  res.json({ mssg: 'Get a single paint' });
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+  const paint = await Paint.findById(id);
+  if (!paint) {
+    return res.status(404).json({
+      error: 'This paint does not exist',
+    });
+  }
+  res.status(200).json(paint);
 });
 
 // TODO: update a single paint (use PATCH instead of PUT for partial updates)
