@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { CardContent, Card, CardHeader } from '@mui/material';
+import {
+  CardContent,
+  Card,
+  CardHeader,
+  CardActions,
+  Button,
+} from '@mui/material';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 
 console.log('test ');
@@ -28,6 +34,11 @@ const PaintSupplyCard = ({ paintData }) => {
           endAdornment="litres"
         />
       </CardContent>
+      <CardActions sx={{ justifyContent: 'center' }}>
+        {paintData.quantity !== quantity && (
+          <Button variant="contained">Save</Button>
+        )}
+      </CardActions>
     </Card>
   );
 };
