@@ -13,6 +13,29 @@ console.log('test ');
 const PaintSupplyCard = ({ paintData }) => {
   const [quantity, setQuantity] = useState(paintData.quantity);
 
+  const backendAPI =
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000'
+      : 'https://is21-2024-backend.onrender.com';
+
+  const handleSubmit = async (e) => {
+    const paint = { title: paintData.title, quantity };
+    const response = await fetch(backendAPI + `/api/paint/${paintData._id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(paint),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      console.log('Paint quantity updated!', json);
+    } else {
+      console.log('Paint quantity could not be updated');
+    }
+  };
+
   return (
     <Card style={{ border: `6px solid ${paintData.title.toLowerCase()}` }}>
       <CardContent>
@@ -36,9 +59,10 @@ const PaintSupplyCard = ({ paintData }) => {
       </CardContent>
       {/* TODO: Add badge to visually show low / no supply */}
       <CardActions sx={{ justifyContent: 'center' }}>
-        {/* TODO: Add functionality to save button */}
         {paintData.quantity !== quantity && (
-          <Button variant="contained">Save</Button>
+          <Button variant="contained" onClick={handleSubmit}>
+            Save
+          </Button>
         )}
       </CardActions>
     </Card>
