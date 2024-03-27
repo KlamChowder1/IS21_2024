@@ -149,7 +149,7 @@ const PaintSupplyCard = ({ paintData }) => {
         />
       </CardContent>
       <CardActions sx={{ justifyContent: 'center' }}>
-        {edited && (
+        {edited && !!quantity && (
           <Button variant="contained" onClick={handleSubmit}>
             Save
           </Button>

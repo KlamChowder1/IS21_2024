@@ -8,7 +8,7 @@ const Dashboard = () => {
         A Paint Company
       </Typography>
       <Container
-        style={{
+        sx={{
           borderTop: 'solid',
           minWidth: '100%',
           height: '100vh',
