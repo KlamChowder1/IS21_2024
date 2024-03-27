@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import {
+  Stack,
   CardContent,
   Card,
   CardHeader,
   CardActions,
   Button,
 } from '@mui/material';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
 
 console.log('test ');
@@ -39,13 +43,29 @@ const PaintSupplyCard = ({ paintData }) => {
   return (
     <Card style={{ border: `6px solid ${paintData.title.toLowerCase()}` }}>
       <CardContent>
-        <CardHeader title={paintData.title} />
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="center"
+          gap={1}
+        >
+          <CardHeader title={paintData.title} />
+          {quantity >= 100 && (
+            <CheckCircleOutlineIcon color="success"></CheckCircleOutlineIcon>
+          )}
+          {quantity < 100 && quantity > 0 && (
+            <ErrorOutlineIcon color="warning"></ErrorOutlineIcon>
+          )}
+          {quantity === 0 && <HighlightOffIcon color="error" />}
+        </Stack>
+
         <NumberInput
           aria-label="Demo number input"
           placeholder="Type a number…"
           value={quantity}
           onChange={(event, val) => setQuantity(val)}
           min={0}
+          max={9999}
           slotProps={{
             incrementButton: {
               children: '▴',
@@ -57,7 +77,6 @@ const PaintSupplyCard = ({ paintData }) => {
           endAdornment="litres"
         />
       </CardContent>
-      {/* TODO: Add badge to visually show low / no supply */}
       <CardActions sx={{ justifyContent: 'center' }}>
         {paintData.quantity !== quantity && (
           <Button variant="contained" onClick={handleSubmit}>
