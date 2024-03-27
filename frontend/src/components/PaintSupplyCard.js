@@ -78,6 +78,27 @@ const PaintSupplyCard = ({ paintData }) => {
     </Snackbar>
   );
 
+  let iconComponent;
+  if (quantity >= 100) {
+    iconComponent = (
+      <Tooltip title="Available">
+        <CheckCircleOutlineIcon color="success" />
+      </Tooltip>
+    );
+  } else if (quantity > 0) {
+    iconComponent = (
+      <Tooltip title="Running Low">
+        <ErrorOutlineIcon color="warning" />
+      </Tooltip>
+    );
+  } else {
+    iconComponent = (
+      <Tooltip title="Out of Stock">
+        <HighlightOffIcon color="error" />
+      </Tooltip>
+    );
+  }
+
   return (
     <Card style={{ border: `6px solid ${paintData.title.toLowerCase()}` }}>
       <CardContent>
@@ -88,21 +109,7 @@ const PaintSupplyCard = ({ paintData }) => {
           gap={1}
         >
           <CardHeader title={paintData.title.toUpperCase()} />
-          {quantity >= 100 && (
-            <Tooltip title="Available">
-              <CheckCircleOutlineIcon color="success"></CheckCircleOutlineIcon>
-            </Tooltip>
-          )}
-          {quantity < 100 && quantity > 0 && (
-            <Tooltip title="Running Low">
-              <ErrorOutlineIcon color="warning"></ErrorOutlineIcon>
-            </Tooltip>
-          )}
-          {quantity === 0 && (
-            <Tooltip title="Out of Stock">
-              <HighlightOffIcon color="error" />
-            </Tooltip>
-          )}
+          {iconComponent}
         </Stack>
         <TextField
           type="number"
