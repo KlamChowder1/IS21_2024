@@ -21,9 +21,11 @@ const PaintSupplyCard = ({ paintData }) => {
   const [quantity, setQuantity] = useState(paintData.quantity);
   const [edited, setEdited] = useState(false);
 
-  const [snackbarOpen, setSnackbarOpen] = useState(false);
-  const [snackbarMessage, setSnackbarMessage] = useState('');
-  const [snackbarSeverity, setSnackbarSeverity] = useState('');
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'info',
+  });
 
   const backendAPI =
     process.env.NODE_ENV === 'development'
@@ -42,13 +44,17 @@ const PaintSupplyCard = ({ paintData }) => {
     setEdited(false);
 
     if (response.ok) {
-      setSnackbarMessage('Paint quantity updated!');
-      setSnackbarSeverity('success');
-      setSnackbarOpen(true);
+      setSnackbar({
+        open: true,
+        message: 'Paint quantity updated!',
+        severity: 'success',
+      });
     } else {
-      setSnackbarMessage('Something went wrong');
-      setSnackbarSeverity('error');
-      setSnackbarOpen(true);
+      setSnackbar({
+        open: true,
+        message: 'Something went wrong',
+        severity: 'error',
+      });
     }
   };
 
@@ -64,17 +70,11 @@ const PaintSupplyCard = ({ paintData }) => {
 
   const snackBar = (
     <Snackbar
-      open={snackbarOpen}
+      open={snackbar.open}
+      onClose={() => setSnackbar({ ...snackbar, open: false })}
       autoHideDuration={3000}
-      onClose={() => setSnackbarOpen(false)}
     >
-      <Alert
-        severity={snackbarSeverity}
-        variant="filled"
-        sx={{ width: '100%' }}
-      >
-        {snackbarMessage}
-      </Alert>
+      <Alert severity={snackbar.severity}>{snackbar.message}</Alert>
     </Snackbar>
   );
 
@@ -101,8 +101,10 @@ const PaintSupplyCard = ({ paintData }) => {
 
   return (
     <Card
-      sx={{ boxShadow: 5 }}
-      style={{ border: `6px solid ${paintData.title.toLowerCase()}` }}
+      sx={{
+        boxShadow: 5,
+        border: `6px solid ${paintData.title.toLowerCase()}`,
+      }}
     >
       <CardContent>
         <Stack
