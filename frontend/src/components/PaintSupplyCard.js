@@ -102,6 +102,7 @@ const PaintSupplyCard = ({ paintData }) => {
   }
 
   return (
+    // card background border colour kind of hacky, if someone adds a paint colour that's misspelled then there will be no colour
     <Card
       sx={{
         boxShadow: 5,
@@ -123,7 +124,9 @@ const PaintSupplyCard = ({ paintData }) => {
           type="number"
           value={quantity}
           onChange={handleInputChange}
-          // known issue with type="number" https://mui.com/material-ui/react-text-field/#type-quot-number-quot
+          // known issue with type="number" https://mui.com/material-ui/react-text-field/#type-quot-number-quot will need to look into it more
+          // maxinput prop doesn't stop max number when inputting number because max is ignored in HTML <input>
+          // maybe find something more mobile friendly / number scroller instead of the whole keyboard?
           onKeyDown={(e) => {
             if (
               e.key === 'e' ||
