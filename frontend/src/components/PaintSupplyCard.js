@@ -14,9 +14,9 @@ const PaintSupplyCard = ({ paintData }) => {
   const [quantity, setQuantity] = useState(paintData.quantity);
 
   return (
-    <Card style={{ border: `6px solid ${paintData.colour.toLowerCase()}` }}>
+    <Card style={{ border: `6px solid ${paintData.title.toLowerCase()}` }}>
       <CardContent>
-        <CardHeader title={paintData.colour} />
+        <CardHeader title={paintData.title} />
         <NumberInput
           aria-label="Demo number input"
           placeholder="Type a number…"

@@ -2,10 +2,17 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const paintRoutes = require('./routes/paint');
 
 const app = express();
 
+app.use(
+  cors({
+    origin: [process.env.DEVELOPMENT_SITE, process.env.PRODUCTION_SITE],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.use((req, res, next) => {
