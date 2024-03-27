@@ -7,13 +7,13 @@ const PaintSupplyContainer = () => {
   const [paints, setPaints] = useState([]);
 
   useEffect(() => {
-    const fetchWorkouts = async () => {
+    const fetchPaints = async () => {
       const response = await fetch(getBackendAPI() + '/api/paint');
       const json = await response.json();
 
       setPaints(json);
     };
-    fetchWorkouts();
+    fetchPaints();
   }, []);
 
   return (
