@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, CircularProgress } from '@mui/material';
 import PaintSupplyCard from './PaintSupplyCard';
 
 const PaintSupplyContainer = () => {
@@ -15,6 +15,7 @@ const PaintSupplyContainer = () => {
     const fetchWorkouts = async () => {
       const response = await fetch(backendAPI + '/api/paint');
       const json = await response.json();
+
       setPaints(json);
     };
     fetchWorkouts();
@@ -22,14 +23,18 @@ const PaintSupplyContainer = () => {
 
   return (
     <Box sx={{ m: '2rem' }}>
-      <Grid container spacing={2}>
-        {paints &&
-          paints.map((paintData) => (
-            <Grid key={paintData._id} item xs={12} md={6} lg={4}>
-              <PaintSupplyCard paintData={paintData} />
-            </Grid>
-          ))}
-      </Grid>
+      {paints.length === 0 ? (
+        <CircularProgress />
+      ) : (
+        <Grid container spacing={2}>
+          {paints &&
+            paints.map((paintData) => (
+              <Grid key={paintData._id} item xs={12} md={6} lg={4}>
+                <PaintSupplyCard paintData={paintData} />
+              </Grid>
+            ))}
+        </Grid>
+      )}
     </Box>
   );
 };
