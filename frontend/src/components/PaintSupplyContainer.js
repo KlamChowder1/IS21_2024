@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { getBackendAPI } from '../api';
 import { Box, Grid, CircularProgress } from '@mui/material';
 import PaintSupplyCard from './PaintSupplyCard';
 
@@ -7,13 +7,8 @@ const PaintSupplyContainer = () => {
   const [paints, setPaints] = useState([]);
 
   useEffect(() => {
-    const backendAPI =
-      process.env.NODE_ENV === 'development'
-        ? 'http://localhost:4000'
-        : 'https://is21-2024-backend.onrender.com';
-
     const fetchWorkouts = async () => {
-      const response = await fetch(backendAPI + '/api/paint');
+      const response = await fetch(getBackendAPI() + '/api/paint');
       const json = await response.json();
 
       setPaints(json);

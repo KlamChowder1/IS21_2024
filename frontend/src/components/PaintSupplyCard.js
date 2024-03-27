@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { getBackendAPI } from '../api';
 import {
   Stack,
   CardContent,
@@ -13,9 +14,11 @@ import {
   Snackbar,
   Alert,
 } from '@mui/material';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import {
+  CheckCircleOutline as CheckCircleOutlineIcon,
+  ErrorOutline as ErrorOutlineIcon,
+  HighlightOff as HighlightOffIcon,
+} from '@mui/icons-material';
 
 const PaintSupplyCard = ({ paintData }) => {
   const [quantity, setQuantity] = useState(paintData.quantity);
@@ -27,20 +30,19 @@ const PaintSupplyCard = ({ paintData }) => {
     severity: 'info',
   });
 
-  const backendAPI =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:4000'
-      : 'https://is21-2024-backend.onrender.com';
-
+  // handling submit for each individual paint colour, might be nice to have a bulk update function in the future
   const handleSubmit = async (e) => {
     const paint = { title: paintData.title, quantity };
-    const response = await fetch(backendAPI + `/api/paint/${paintData._id}`, {
-      method: 'PATCH',
-      body: JSON.stringify(paint),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    const response = await fetch(
+      getBackendAPI() + `/api/paint/${paintData._id}`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(paint),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     setEdited(false);
 
     if (response.ok) {
