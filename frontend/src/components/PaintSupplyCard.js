@@ -112,14 +112,26 @@ const PaintSupplyCard = ({ paintData }) => {
           {iconComponent}
         </Stack>
         <TextField
+          sx={{ width: '50%' }}
           type="number"
           value={quantity}
           onChange={handleInputChange}
+          // known issue with type="number" https://mui.com/material-ui/react-text-field/#type-quot-number-quot
+          onKeyDown={(e) => {
+            if (
+              e.key === 'e' ||
+              e.key === 'E' ||
+              e.key === '-' ||
+              e.key === '+'
+            ) {
+              e.preventDefault();
+            }
+          }}
+          inputProps={{
+            min: '0',
+            max: '999',
+          }}
           InputProps={{
-            inputProps: {
-              max: 9999,
-              min: 0,
-            },
             endAdornment: (
               <InputAdornment position="end">litres</InputAdornment>
             ),
