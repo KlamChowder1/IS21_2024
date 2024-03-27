@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardActions,
   Button,
+  Tooltip,
 } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -49,19 +50,27 @@ const PaintSupplyCard = ({ paintData }) => {
           justifyContent="center"
           gap={1}
         >
-          <CardHeader title={paintData.title} />
+          <CardHeader title={paintData.title.toUpperCase()} />
           {quantity >= 100 && (
-            <CheckCircleOutlineIcon color="success"></CheckCircleOutlineIcon>
+            <Tooltip title="Available">
+              <CheckCircleOutlineIcon color="success"></CheckCircleOutlineIcon>
+            </Tooltip>
           )}
           {quantity < 100 && quantity > 0 && (
-            <ErrorOutlineIcon color="warning"></ErrorOutlineIcon>
+            <Tooltip title="Running Low">
+              <ErrorOutlineIcon color="warning"></ErrorOutlineIcon>
+            </Tooltip>
           )}
-          {quantity === 0 && <HighlightOffIcon color="error" />}
+          {quantity === 0 && (
+            <Tooltip title="Out of Stock">
+              <HighlightOffIcon color="error" />
+            </Tooltip>
+          )}
         </Stack>
 
         <NumberInput
-          aria-label="Demo number input"
-          placeholder="Type a number…"
+          aria-label="Number input"
+          placeholder="0"
           value={quantity}
           onChange={(event, val) => setQuantity(val)}
           min={0}
