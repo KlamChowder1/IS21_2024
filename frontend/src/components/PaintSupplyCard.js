@@ -55,7 +55,7 @@ const PaintSupplyCard = ({ paintData }) => {
   const handleInputChange = (event) => {
     const { value } = event.target;
     setQuantity(value);
-    if (value !== paintData.quantity) {
+    if (Number(value) !== paintData.quantity) {
       setEdited(true);
     } else {
       setEdited(false);
@@ -100,7 +100,10 @@ const PaintSupplyCard = ({ paintData }) => {
   }
 
   return (
-    <Card style={{ border: `6px solid ${paintData.title.toLowerCase()}` }}>
+    <Card
+      sx={{ boxShadow: 5 }}
+      style={{ border: `6px solid ${paintData.title.toLowerCase()}` }}
+    >
       <CardContent>
         <Stack
           direction="row"
