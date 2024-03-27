@@ -35,7 +35,6 @@ router.post('/', async (req, res) => {
   const { title, quantity } = req.body;
   try {
     const paint = await Paint.create({ title, quantity });
-    console.log(paint);
     res.status(200).json(paint);
   } catch (e) {
     res.status(400).json({ error: e.message });

@@ -1,4 +1,4 @@
-import { Typography, Divider, Box, Container } from '@mui/material';
+import { Typography, Box, Container } from '@mui/material';
 import PaintSupplyContainer from '../components/PaintSupplyContainer';
 
 const Dashboard = () => {

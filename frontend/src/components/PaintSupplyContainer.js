@@ -12,10 +12,6 @@ const PaintSupplyContainer = () => {
         ? 'http://localhost:4000'
         : 'https://is21-2024-backend.onrender.com';
 
-    console.log(process.env.NODE_ENV);
-
-    console.log(backendAPI);
-
     const fetchWorkouts = async () => {
       const response = await fetch(backendAPI + '/api/paint');
       const json = await response.json();
@@ -23,8 +19,6 @@ const PaintSupplyContainer = () => {
     };
     fetchWorkouts();
   }, []);
-
-  console.log(paints);
 
   return (
     <Box sx={{ m: '2rem' }}>
