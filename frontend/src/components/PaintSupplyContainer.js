@@ -9,8 +9,8 @@ const PaintSupplyContainer = () => {
   useEffect(() => {
     const backendAPI =
       process.env.NODE_ENV === 'development'
-        ? process.env.REACT_APP_DEVELOPMENT_URL
-        : process.env.REACT_APP_PRODUCTION_URL;
+        ? 'http://localhost:4000'
+        : 'https://is21-2024-backend.onrender.com';
 
     console.log(process.env.NODE_ENV);
 
