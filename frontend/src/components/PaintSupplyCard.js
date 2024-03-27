@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useState } from 'react';
 import {
   Stack,
@@ -7,16 +8,22 @@ import {
   CardActions,
   Button,
   Tooltip,
+  TextField,
+  InputAdornment,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import { Unstable_NumberInput as NumberInput } from '@mui/base/Unstable_NumberInput';
-
-console.log('test ');
 
 const PaintSupplyCard = ({ paintData }) => {
   const [quantity, setQuantity] = useState(paintData.quantity);
+  const [edited, setEdited] = useState(false);
+
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('');
 
   const backendAPI =
     process.env.NODE_ENV === 'development'
@@ -32,12 +39,26 @@ const PaintSupplyCard = ({ paintData }) => {
         'Content-Type': 'application/json',
       },
     });
-    const json = await response.json();
+    setEdited(false);
 
     if (response.ok) {
-      console.log('Paint quantity updated!', json);
+      setSnackbarMessage('Paint quantity updated!');
+      setSnackbarSeverity('success');
+      setSnackbarOpen(true);
     } else {
-      console.log('Paint quantity could not be updated');
+      setSnackbarMessage('Something went wrong');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
+    }
+  };
+
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setQuantity(value);
+    if (value !== paintData.quantity) {
+      setEdited(true);
+    } else {
+      setEdited(false);
     }
   };
 
@@ -67,32 +88,41 @@ const PaintSupplyCard = ({ paintData }) => {
             </Tooltip>
           )}
         </Stack>
-
-        <NumberInput
-          aria-label="Number input"
-          placeholder="0"
+        <TextField
+          type="number"
           value={quantity}
-          onChange={(event, val) => setQuantity(val)}
-          min={0}
-          max={9999}
-          slotProps={{
-            incrementButton: {
-              children: '▴',
+          onChange={handleInputChange}
+          InputProps={{
+            inputProps: {
+              max: 9999,
+              min: 0,
             },
-            decrementButton: {
-              children: '▾',
-            },
+            endAdornment: (
+              <InputAdornment position="end">litres</InputAdornment>
+            ),
           }}
-          endAdornment="litres"
         />
       </CardContent>
       <CardActions sx={{ justifyContent: 'center' }}>
-        {paintData.quantity !== quantity && (
+        {edited && (
           <Button variant="contained" onClick={handleSubmit}>
             Save
           </Button>
         )}
       </CardActions>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={3000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <Alert
+          severity={snackbarSeverity}
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Card>
   );
 };
