@@ -62,6 +62,22 @@ const PaintSupplyCard = ({ paintData }) => {
     }
   };
 
+  const snackBar = (
+    <Snackbar
+      open={snackbarOpen}
+      autoHideDuration={3000}
+      onClose={() => setSnackbarOpen(false)}
+    >
+      <Alert
+        severity={snackbarSeverity}
+        variant="filled"
+        sx={{ width: '100%' }}
+      >
+        {snackbarMessage}
+      </Alert>
+    </Snackbar>
+  );
+
   return (
     <Card style={{ border: `6px solid ${paintData.title.toLowerCase()}` }}>
       <CardContent>
@@ -110,19 +126,7 @@ const PaintSupplyCard = ({ paintData }) => {
           </Button>
         )}
       </CardActions>
-      <Snackbar
-        open={snackbarOpen}
-        autoHideDuration={3000}
-        onClose={() => setSnackbarOpen(false)}
-      >
-        <Alert
-          severity={snackbarSeverity}
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-          {snackbarMessage}
-        </Alert>
-      </Snackbar>
+      {snackBar}
     </Card>
   );
 };
