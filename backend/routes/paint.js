@@ -11,7 +11,6 @@ router.get('/', getPaints);
 
 router.patch('/:id', updatePaint);
 
-// need a POST to insert stuff into db
 router.post('/', createPaint);
 
 module.exports = router;
