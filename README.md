@@ -2,7 +2,7 @@
 
 Written Assignment for the IS21 Full Stack Developer role, production site accessible here: https://is21-2024.onrender.com/
 
-![IS_21_Demo](https://github.com/KlamChowder1/IS21_2024/assets/24284083/878b3bd2-7659-4742-95a3-5f75585b76fd)
+![IS_21](https://github.com/KlamChowder1/IS21_2024/assets/24284083/31419f1a-bf8c-43ba-9bda-b9a8fe6850bb)
 
 ## Notes
 - Instead of replicating the whole physical Kanban board to a digital one, I thought it would be more appropriate if the paint stock had quantifiable units (liters) of paint for more accurate/useful data to the painters. The status of [available, running low, out of stock] is still visible through the badge icon
