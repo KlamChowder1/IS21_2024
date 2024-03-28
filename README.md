@@ -5,8 +5,8 @@ Written Assignment for the IS21 Full Stack Developer role, production site acces
 ![IS_21](https://github.com/KlamChowder1/IS21_2024/assets/24284083/31419f1a-bf8c-43ba-9bda-b9a8fe6850bb)
 
 ## Notes
-- Instead of replicating the whole physical Kanban board to a digital one, I thought it would be more appropriate if the paint stock had quantifiable units (liters) of paint for more accurate/useful data to the painters. The status of [available, running low, out of stock] is still visible through the badge icon
-- Kept frontend colour and UI simple for users who might not be as tech-savvy, simpler seemed better
+- Instead of replicating the whole physical Kanban board to a digital one, I thought it would be more appropriate if the paint stock had quantifiable units (litres) of paint for more accurate/useful data to the painters. The status of [available, running low, out of stock] is still visible through the badge icon
+- Kept frontend colour and UI simple for users who might not be as tech-savvy, simpler seemed better. Also done to highlight the paint colour cards more
 - Did not implement sysadmin / user login because it wasn't in the Acceptance Criteria 
 - Commit messages and PR method isn't as clean as I usually am, sorry (I would usually PR a feature branch and squash commits before merging to main)
 
