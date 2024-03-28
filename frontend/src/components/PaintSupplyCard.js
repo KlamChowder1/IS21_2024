@@ -30,7 +30,6 @@ const PaintSupplyCard = ({ paintData }) => {
     severity: 'info',
   });
 
-  // handling submit for each individual paint colour, might be nice to have a bulk update function in the future
   const handleSubmit = async (e) => {
     const paint = { title: paintData.title, quantity };
     const response = await fetch(
@@ -128,9 +127,9 @@ const PaintSupplyCard = ({ paintData }) => {
           type="number"
           value={quantity}
           onChange={handleInputChange}
-          // known issue with type="number" https://mui.com/material-ui/react-text-field/#type-quot-number-quot will need to look into it more
+          // known issue with type="number" https://mui.com/material-ui/react-text-field/#type-quot-number-quot
           // maxinput prop doesn't stop max number when inputting number because max is ignored in HTML <input>
-          // maybe find something more mobile friendly / number scroller instead of the whole keyboard?
+          // maybe find something more mobile friendly / number scroller instead of the whole keyboard
           onKeyDown={(e) => {
             if (
               e.key === 'e' ||

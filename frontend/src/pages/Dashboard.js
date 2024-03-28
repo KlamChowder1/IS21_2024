@@ -12,7 +12,7 @@ const Dashboard = () => {
           borderTop: 'solid',
           minWidth: '100%',
           height: '100vh',
-          // should create a theme for background, primary, secondary colours, etc instead of magic number colours
+          // maybe create a theme for background, primary, secondary colours, etc instead of magic number colours
           background: '#F2F6FC',
         }}
       >
