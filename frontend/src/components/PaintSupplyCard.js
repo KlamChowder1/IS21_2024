@@ -75,6 +75,10 @@ const PaintSupplyCard = ({ paintData }) => {
       open={snackbar.open}
       onClose={() => setSnackbar({ ...snackbar, open: false })}
       autoHideDuration={3000}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
     >
       <Alert severity={snackbar.severity}>{snackbar.message}</Alert>
     </Snackbar>
