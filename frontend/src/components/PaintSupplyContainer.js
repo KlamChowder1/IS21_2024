@@ -17,11 +17,11 @@ const PaintSupplyContainer = () => {
   }, []);
 
   return (
-    <Box sx={{ m: '2rem' }}>
+    <Box sx={{ mt: '2rem', mx: '2rem' }}>
       {paints.length === 0 ? (
         <CircularProgress />
       ) : (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} mb={2}>
           {paints &&
             paints.map((paintData) => (
               <Grid key={paintData._id} item xs={12} md={6} lg={4}>

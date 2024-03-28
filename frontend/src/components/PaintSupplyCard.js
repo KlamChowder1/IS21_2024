@@ -20,6 +20,8 @@ import {
   HighlightOff as HighlightOffIcon,
 } from '@mui/icons-material';
 
+const AVAILABLE_CUTOFF = 100;
+
 const PaintSupplyCard = ({ paintData }) => {
   const [quantity, setQuantity] = useState(paintData.quantity);
   const [edited, setEdited] = useState(false);
@@ -84,7 +86,7 @@ const PaintSupplyCard = ({ paintData }) => {
   );
 
   let iconComponent;
-  if (quantity >= 100) {
+  if (quantity >= AVAILABLE_CUTOFF) {
     iconComponent = (
       <Tooltip title="Available">
         <CheckCircleOutlineIcon color="success" />
@@ -108,7 +110,7 @@ const PaintSupplyCard = ({ paintData }) => {
     // card background border colour kind of hacky, if someone adds a paint colour that's misspelled then there will be no colour
     <Card
       sx={{
-        boxShadow: 5,
+        boxShadow: 6,
         border: `6px solid ${paintData.title.toLowerCase()}`,
       }}
     >
