@@ -19,8 +19,9 @@ Backend
 Frontend
 - Adding buttons to link to the POST / DELETE endpoints
 - Adding reset button on input field to reset to original value
+- Bulk update paint colour quantities instead of updating individually
+- Add React Context if app grows larger and there's shared data 
 - i18n translation for strings if this web application is to be used internationally
 - Accessibility criteria (WCAG)
-- Bulk update paint colour quantities instead of updating individually
 - Test cross browser compatability (BrowserStack)
 - Adding tests
