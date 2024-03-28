@@ -13,7 +13,7 @@ Written Assignment for the IS21 Full Stack Developer role, production site acces
 ## Future features
 
 Backend
-- Adding a DELETE endpoint if painters want to delete paint colours in the future
+- Adding a DELETE endpoint if painters want to delete paint colours in the future (don't need all CRUD operations to be RESTful)
 - Adding tests
 
 Frontend
